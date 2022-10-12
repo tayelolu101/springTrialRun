@@ -11,12 +11,13 @@ import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
+
     private final DepartmentRepository departmentRepository;
 
-    @Autowired
     public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
     }
+
 
     @Override
     public Department saveDepartment(Department department) {
@@ -38,8 +39,12 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public void deleteDepartmentById(Long departmentId) {
-        departmentRepository.deleteById(departmentId);
+    public void deleteDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Department> deprt = departmentRepository.findById(departmentId);
+        if(!deprt.isPresent()){
+            throw new DepartmentNotFoundException("Department Not Found");
+        }
+            departmentRepository.deleteById(departmentId);
     }
 
     @Override
@@ -50,18 +55,18 @@ public class DepartmentServiceImpl implements DepartmentService{
             throw new DepartmentNotFoundException("Department Not Found");
         }
         Department dept = deprt.get();
-        if(department.getDepartmentName() != null && !department.getDepartmentName().equals(""))
+        if(department.getDepartmentName() != null && !department.getDepartmentName().isEmpty())
                dept.setDepartmentName(department.getDepartmentName());
-        if(department.getDepartmentCode() != null && !department.getDepartmentCode().equals(""))
+        if(department.getDepartmentCode() != null && !department.getDepartmentCode().isEmpty())
             dept.setDepartmentCode(department.getDepartmentCode());
-        if(department.getDepartmentAddress() != null && !department.getDepartmentAddress().equals(""))
+        if(department.getDepartmentAddress() != null && !department.getDepartmentAddress().isEmpty())
             dept.setDepartmentAddress(department.getDepartmentAddress());
 
         return departmentRepository.save(dept);
     }
 
     @Override
-    public Department fetchDepartmentByName(String name) {
-        return departmentRepository.fetchDepartmentByName(name);
+    public Department findByDepartmentName(String name) {
+        return departmentRepository.findByDepartmentName(name);
     }
 }
