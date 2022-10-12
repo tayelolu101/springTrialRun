@@ -3,18 +3,20 @@ package com.example.sprintbootrest.service;
 import com.example.sprintbootrest.entity.Department;
 import com.example.sprintbootrest.error.DepartmentNotFoundException;
 
+
 import java.util.List;
 
+
 public interface DepartmentService {
-    public Department saveDepartment(Department department);
+    Department saveDepartment(Department department);
 
-    public List<Department> fetchDepartments();
+    List<Department> fetchDepartments();
 
-    public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException;
+    Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
-    public void deleteDepartmentById(Long departmentId);
+    void deleteDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
-    public Department updateDepartment(Long departmentId, Department department) throws DepartmentNotFoundException;
+    Department updateDepartment(Long departmentId, Department department) throws DepartmentNotFoundException;
 
-    public Department fetchDepartmentByName(String name);
+    Department findByDepartmentName(String name);
 }

@@ -14,8 +14,9 @@ import java.util.List;
 @RestController
 public class DepartmentController {
     private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
+
     private final DepartmentService departmentService;
-    @Autowired
+
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
@@ -37,12 +38,12 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/name/{name}")
-    public Department fetchDepartmentByName(@PathVariable("name") String name){
-        return  departmentService.fetchDepartmentByName(name);
+    public Department findByDepartmentName(@PathVariable("name") String name){
+        return  departmentService.findByDepartmentName(name);
     }
 
     @DeleteMapping("/departments/{id}")
-    public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+    public String deleteDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
          departmentService.deleteDepartmentById(departmentId);
          return "Department with ID " + departmentId + " successfully deleted!";
     }
