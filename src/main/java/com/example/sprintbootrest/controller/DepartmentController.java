@@ -39,7 +39,7 @@ public class DepartmentController {
 
     @GetMapping("/departments/name/{name}")
     public Department findByDepartmentName(@PathVariable("name") String name){
-        return  departmentService.findByDepartmentName(name);
+        return  departmentService.findByDepartmentNameIgnoreCase(name);
     }
 
     @DeleteMapping("/departments/{id}")

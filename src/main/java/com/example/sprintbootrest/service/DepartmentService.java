@@ -18,5 +18,5 @@ public interface DepartmentService {
 
     Department updateDepartment(Long departmentId, Department department) throws DepartmentNotFoundException;
 
-    Department findByDepartmentName(String name);
+    Department findByDepartmentNameIgnoreCase(String name);
 }
