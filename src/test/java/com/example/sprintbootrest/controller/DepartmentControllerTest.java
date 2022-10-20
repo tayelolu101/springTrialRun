@@ -1,11 +1,11 @@
 package com.example.sprintbootrest.controller;
 
 import com.example.sprintbootrest.entity.Department;
-import com.example.sprintbootrest.error.DepartmentNotFoundException;
 import com.example.sprintbootrest.service.DepartmentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.stubbing.answers.DoesNothing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,9 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import javax.annotation.processing.SupportedAnnotationTypes;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(DepartmentController.class)
 class DepartmentControllerTest {
