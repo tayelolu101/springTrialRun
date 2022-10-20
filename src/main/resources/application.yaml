@@ -1,0 +1,48 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,bean"
+
+
+server:
+  port: '8081'
+
+
+spring:
+  profiles:
+    active: dev
+---
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/taiwo
+    password: t_whizzy101@yahoo.com
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  config:
+    activate:
+      on-profile: prod
+
+
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/taiwo
+    password: t_whizzy101@yahoo.com
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  config:
+    activate:
+      on-profile: dev
+
+
